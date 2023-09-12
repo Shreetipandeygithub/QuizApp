@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.android.material.color.utilities.Score;
@@ -16,7 +17,9 @@ import javax.net.ssl.SSLEngineResult;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView questionsTV,TotalQuestionsTV;
+    RelativeLayout rlmain;
 
+    boolean answered;
     Button ansA,ansB,ansC,ansD,submitBtn;
 
     int Score=0;
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ansC=findViewById(R.id.ansC);
         ansD=findViewById(R.id.ansD);
         submitBtn=findViewById(R.id.submitBtn);
+        rlmain=findViewById(R.id.rlmain);
 
         ansA.setOnClickListener(this);
         ansB.setOnClickListener(this);
@@ -65,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Button clickedButton=(Button) view;
 
+
         if(clickedButton.getId()==R.id.submitBtn){
             if(selectedAnswer.equals(QuizQuestions.correctAns[CurrentQuestionIndex])){
                 Score++;
@@ -73,13 +78,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             loadNewQuestion();
 
         }else{
-            //choiced button clicked
-
+            //choose button clicked
             selectedAnswer=clickedButton.getText().toString();
-            // after selecting one answer the color of the buttons will turn to magenta
-            clickedButton.setBackgroundColor(Color.MAGENTA);
-        }
+            // after selecting one answer the color of the buttons will turn to green or red
+            if(selectedAnswer.equals(QuizQuestions.correctAns[CurrentQuestionIndex])){
+                clickedButton.setBackgroundColor(Color.GREEN);
+            }else{
+                clickedButton.setBackgroundColor(Color.RED);
+            }
 
+        }
     }
 
     void loadNewQuestion(){

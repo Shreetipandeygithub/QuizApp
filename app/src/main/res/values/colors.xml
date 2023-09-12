@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="yellow">#FFEB3B</color>
     <color name="tale3">#8A8484</color>
+    <color name="Correct">#652A9F09</color>
+    <color name="Wrong">#D31414</color>
 </resources>
